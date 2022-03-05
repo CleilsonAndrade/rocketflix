@@ -1,0 +1,10 @@
+{
+  "name": "Rocketflix",
+  "version": "1.0.0",
+  "description": "Buscador de filmes aletórios do site The Movie Database",
+  "main": "main.js",
+  "repository": "https://github.com/CleilsonAndrade/rocketflix.git",
+  "author": "Cleilson Andrade",
+  "license": "MIT",
+  "dependencies": {}
+}
