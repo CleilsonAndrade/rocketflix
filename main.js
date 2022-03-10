@@ -15,10 +15,27 @@ function getMovie() {
 } */
 
 // Com FETCH
-async function getMovie() {
+/* async function getMovie() {
   try {
     const response = await fetch(`${BASE_URL}${idMovie}?${API_KEY}&${language}`)
+    const data = await response.json()
+    console.log(data)
   } catch (error) {
     console.log(error)
   }
+} */
+
+async function getMovie() {
+  try {
+    const { data } = await axios(`${BASE_URL}${idMovie}?${API_KEY}&${language}`)
+    console.log(data)
+    show(data)
+  } catch (error) {
+    console.log(error)
+  }
+}
+getMovie()
+
+function show(data) {
+  result.innerHTML = data.title
 }
