@@ -16,10 +16,14 @@ body {
   font-family: 'Poppins', sans-serif;
   background: var(--background);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 header {
-  padding-top: 8rem;
+  margin-bottom: 1.85rem;
 }
 
 img {
@@ -30,7 +34,32 @@ img {
 h1 {
   margin-top: 0.6rem;
   font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 3.75rem;
   color: var(--title);
+}
+
+#result {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 19rem;
+}
+
+#result img {
+  width: 10rem;
+  height: 15rem;
+}
+
+#result div {
+  color: var(--title);
+  max-height: 80px;
+}
+
+#result div p {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 button {
@@ -38,13 +67,31 @@ button {
   height: 47px;
   padding: 1px 6px 1px 6px;
   border: 2px solid #1a1a1a;
+  border-radius: 5px;
   background: var(--bg-button);
-  margin: 0 auto;
+  margin: 1.8rem auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
+
+button span {
+  font-weight: 700;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
 button img {
   width: 22px;
   height: 22px;
+}
+
+p {
+  display: block;
+  width: 381px;
+  color: var(--title);
+  font-weight: 400;
+  font-size: 0.85rem;
+  line-height: 1.3rem;
+  text-align: center;
 }
