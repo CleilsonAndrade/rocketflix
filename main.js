@@ -1,7 +1,5 @@
 import { API_KEY, BASE_URL, IMG_URL, language } from './api.js'
 
-let idMovie = Math.floor(Math.random() * 1000 + 1)
-
 const section = document.getElementById('result')
 
 /* // Com axios
@@ -25,24 +23,29 @@ function getMovie() {
   }
 } */
 
-async function getMovie() {
+async function getMovie(idMovie) {
   try {
     const { data } = await axios(`${BASE_URL}${idMovie}?${API_KEY}&${language}`)
     console.log(`${BASE_URL}${idMovie}?${API_KEY}&${language}`)
     console.log(data)
+    section.classList.toggle('result_show')
     show(data)
   } catch (error) {
-    console.log(error)
+    console.log(`ERRO ENCONTRADO${error}`)
   }
 }
-getMovie()
 
 function show(data) {
   console.log(section.children)
   console.log((section.children[0].src = `${IMG_URL}${data.poster_path}`))
   console.log((section.children[0].alt = `Poster do filme "${data.title}"`))
   console.log((section.children[1].children[0].innerHTML = `${data.title}`))
-  console.log(
-    (section.children[1].children[1].innerHTML = `LALALA${data.overview}`)
-  )
+  console.log((section.children[1].children[1].innerHTML = `${data.overview}`))
 }
+
+const buttonF = document.querySelector('button')
+buttonF.addEventListener('click', function showMovie() {
+  const idMovie = Math.floor(Math.random() * 1000 + 1)
+
+  getMovie(idMovie)
+})

@@ -40,26 +40,46 @@ h1 {
 }
 
 #result {
-  display: flex;
+  display: none;
   flex-direction: row;
   justify-content: center;
   height: 19rem;
 }
 
+#result.result_show {
+  display: flex;
+}
+
 #result img {
   width: 10rem;
   height: 15rem;
+  margin-top: 0.77rem;
+  margin-right: 2.1rem;
 }
 
 #result div {
   color: var(--title);
   max-height: 80px;
+  text-align: left;
+}
+
+#result div h2 {
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
 }
 
 #result div p {
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.5rem;
+  margin-top: 1.18rem;
+  text-align: left;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  max-height: 16.5em;
 }
 
 button {
