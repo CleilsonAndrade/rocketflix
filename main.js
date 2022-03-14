@@ -23,6 +23,18 @@ function getMovie() {
   }
 } */
 
+// idMovieErrorPoster => 695 https://api.themoviedb.org/3/movie/394?api_key=fcf15195836575299563d6ade8827f77&language=pt-BR
+
+/* xhr.js:210          GET https://api.themoviedb.org/3/movie/715?api_key=fcf15195836575299563d6ade8827f77&language=pt-BR 404
+(anônimo) @ xhr.js:210
+e.exports @ xhr.js:15
+e.exports @ dispatchRequest.js:56
+f.request @ Axios.js:108
+(anônimo) @ bind.js:9
+getMovie @ main.js:30
+showMovie @ main.js:52
+main.js:36 ERRO ENCONTRADOError: Request failed with status code 404 */
+
 async function getMovie(idMovie) {
   try {
     const { data } = await axios(`${BASE_URL}${idMovie}?${API_KEY}&${language}`)
