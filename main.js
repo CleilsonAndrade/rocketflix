@@ -37,13 +37,23 @@ main.js:36 ERRO ENCONTRADOError: Request failed with status code 404 */
 
 async function getMovie(idMovie) {
   try {
+    // const { data } = await axios(`${BASE_URL}${715}?${API_KEY}&${language}`)
     const { data } = await axios(`${BASE_URL}${idMovie}?${API_KEY}&${language}`)
+
     console.log(`${BASE_URL}${idMovie}?${API_KEY}&${language}`)
-    console.log(data)
+
     section.classList.toggle('result_show')
+    // status
     show(data)
   } catch (error) {
-    console.log(`ERRO ENCONTRADO${error}`)
+    console.log(`Errado: ${error.message}`)
+    console.log(section.children[1])
+    section.style.display = 'flex'
+    section.style.justifyContent = 'center'
+    section.style.alignItems = 'center'
+    section.children[1].children[0].style.width = '24rem'
+    section.children[1].children[0].style.textAlign = 'center'
+    section.classList.toggle('result_show')
   }
 }
 
