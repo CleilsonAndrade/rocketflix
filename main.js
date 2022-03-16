@@ -7,7 +7,7 @@ function getMovie() {
   axios
     .get(`${BASE_URL}${idMovie}?${API_KEY}&${language}`)
     .then(response => {
-      console.log(JSON.stringify(response.data))
+      // console.log(JSON.stringify(response.data))
     })
     .catch(error => console.log(error))
 } */
@@ -23,8 +23,8 @@ function getMovie() {
   }
 } */
 
-async function getMovie(idMovie) {
-  /* try {
+// async function getMovie(idMovie) {
+/* try {
     // const { data } = await axios(`${BASE_URL}${715}?${API_KEY}&${language}`)
     const { data } = await axios(`${BASE_URL}${idMovie}?${API_KEY}&${language}`)
 
@@ -38,22 +38,38 @@ async function getMovie(idMovie) {
     showError()
   } */
 
-  try {
+/* try {
     const { data, status } = await axios(
       `${BASE_URL}${idMovie}?${API_KEY}&${language}`
     )
+
     section.classList.toggle('result_show')
     show(data)
 
     console.log(data)
     console.log(status)
   } catch (error) {
-    console.log(`ERRADO: ${error.response.status}`)
     showError()
-  }
+  } */
+// }
+
+function getMovie(idMovie) {
+  axios
+    .get(`${BASE_URL}${idMovie}?${API_KEY}&${language}`)
+    .then(response => {
+      // console.log(JSON.stringify(response.data))
+      const dados = response.data
+      console.log(dados)
+      show(dados)
+    })
+    .catch(error => {
+      console.log(error)
+      showError()
+    })
 }
 
 function show(data) {
+  console.log(data.title)
   section.children
   section.children[0].src = `${IMG_URL}${data.poster_path}`
   section.children[0].alt = `Poster do filme "${data.title}"`
@@ -74,7 +90,7 @@ function showError() {
 }
 
 const buttonF = document.querySelector('button')
-buttonF.addEventListener('click', function showMovie() {
+buttonF.addEventListener('click', function () {
   const idMovie = Math.floor(Math.random() * 1000 + 1)
 
   getMovie(idMovie)
