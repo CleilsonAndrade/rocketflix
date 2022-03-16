@@ -23,46 +23,54 @@ function getMovie() {
   }
 } */
 
-// idMovieErrorPoster => 695 https://api.themoviedb.org/3/movie/394?api_key=fcf15195836575299563d6ade8827f77&language=pt-BR
-
-/* xhr.js:210          GET https://api.themoviedb.org/3/movie/715?api_key=fcf15195836575299563d6ade8827f77&language=pt-BR 404
-(anônimo) @ xhr.js:210
-e.exports @ xhr.js:15
-e.exports @ dispatchRequest.js:56
-f.request @ Axios.js:108
-(anônimo) @ bind.js:9
-getMovie @ main.js:30
-showMovie @ main.js:52
-main.js:36 ERRO ENCONTRADOError: Request failed with status code 404 */
-
 async function getMovie(idMovie) {
-  try {
+  /* try {
     // const { data } = await axios(`${BASE_URL}${715}?${API_KEY}&${language}`)
     const { data } = await axios(`${BASE_URL}${idMovie}?${API_KEY}&${language}`)
 
     console.log(`${BASE_URL}${idMovie}?${API_KEY}&${language}`)
 
     section.classList.toggle('result_show')
-    // status
+
     show(data)
   } catch (error) {
-    console.log(`Errado: ${error.message}`)
-    console.log(section.children[1])
-    section.style.display = 'flex'
-    section.style.justifyContent = 'center'
-    section.style.alignItems = 'center'
-    section.children[1].children[0].style.width = '24rem'
-    section.children[1].children[0].style.textAlign = 'center'
+    console.log(`ERRADO: ${error.message}`)
+    showError()
+  } */
+
+  try {
+    const { data, status } = await axios(
+      `${BASE_URL}${idMovie}?${API_KEY}&${language}`
+    )
     section.classList.toggle('result_show')
+    show(data)
+
+    console.log(data)
+    console.log(status)
+  } catch (error) {
+    console.log(`ERRADO: ${error.response.status}`)
+    showError()
   }
 }
 
 function show(data) {
-  console.log(section.children)
-  console.log((section.children[0].src = `${IMG_URL}${data.poster_path}`))
-  console.log((section.children[0].alt = `Poster do filme "${data.title}"`))
-  console.log((section.children[1].children[0].innerHTML = `${data.title}`))
-  console.log((section.children[1].children[1].innerHTML = `${data.overview}`))
+  section.children
+  section.children[0].src = `${IMG_URL}${data.poster_path}`
+  section.children[0].alt = `Poster do filme "${data.title}"`
+  section.children[1].style.marginTop = '0'
+  section.children[1].style.marginBottom = '0'
+  section.children[1].children[0].innerHTML = `${data.title}`
+  section.children[1].children[1].innerHTML = `${data.overview}`
+}
+
+function showError() {
+  section.children[0].src = './assets/poster_404.png'
+  section.children[0].alt = 'Poster ERROR 404'
+  section.children[1].children[0].innerHTML =
+    'Ops, hoje não é dia de assistir filme. <br>Bora codar! 🚀'
+  section.children[1].children[1].innerHTML = ''
+  section.children[1].style.marginTop = 'auto'
+  section.children[1].style.marginBottom = 'auto'
 }
 
 const buttonF = document.querySelector('button')
