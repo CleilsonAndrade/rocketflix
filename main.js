@@ -24,27 +24,21 @@ function getMovie() {
 } */
 
 function getMovie(idMovie) {
+  showClean()
+  section.classList.toggle('result_show')
+
   axios
     .get(`${BASE_URL}${idMovie}?${API_KEY}&${language}`)
     .then(response => {
-      // console.log(JSON.stringify(response.data))
-      const dado = response.data
-
       if (response.status == 200) {
-        console.log('acertou')
-        section.classList.toggle('result_show')
+        const dado = response.data
         show(dado)
-      }
-
-      if (response.status != 200) {
-        console.log('errou')
-        showError()
-        section.classList.toggle('result_show')
+        console.log('aaaaa')
       }
     })
     .catch(function (error) {
-      console.log(error.response.data)
       console.log(error.response.status)
+      showError()
     })
 }
 
