@@ -24,7 +24,6 @@ function getMovie() {
 } */
 
 function getMovie(idMovie) {
-  showClean()
   section.classList.toggle('result_show')
 
   axios
@@ -40,6 +39,7 @@ function getMovie(idMovie) {
       console.log(error.response.status)
       showError()
     })
+  showClean()
 }
 
 function show(data) {
