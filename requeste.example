@@ -1,0 +1,20 @@
+/* // Com axios
+function getMovie() {
+  axios
+    .get(`${BASE_URL}${idMovie}?${API_KEY}&${language}`)
+    .then(response => {
+      // console.log(JSON.stringify(response.data))
+    })
+    .catch(error => console.log(error))
+} */
+
+// Com FETCH
+/* async function getMovie() {
+  try {
+    const response = await fetch(`${BASE_URL}${idMovie}?${API_KEY}&${language}`)
+    const data = await response.json()
+    console.log(data)
+  } catch (error) {
+    console.log(error)
+  }
+} */

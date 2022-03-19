@@ -20,18 +20,19 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: var(--subtitle);
 }
 
 header {
   margin-bottom: 1.85rem;
 }
 
-img {
+header img {
   height: 87px;
   width: 100px;
 }
 
-h1 {
+header h1 {
   margin-top: 0.6rem;
   font-weight: 600;
   font-size: 2.5rem;
@@ -39,57 +40,57 @@ h1 {
   color: var(--title);
 }
 
-#result {
+#infoMovie {
   display: none;
-  flex-direction: row;
-  justify-content: center;
   height: 19rem;
 }
 
-#result.result_show {
+#infoMovie.infoMovieShow {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
-#result img {
+#infoMovie img {
   width: 10rem;
   height: 15rem;
   margin-top: 0.77rem;
   margin-right: 2.1rem;
 }
 
-#result div {
+#infoMovie div {
   color: var(--title);
-  max-height: 80px;
+  width: 26rem;
   text-align: left;
 }
 
-#result div h2 {
+#infoMovie div h2 {
   font-weight: 700;
   font-size: 1.25rem;
   line-height: 1.5rem;
 }
 
-#result div p {
+#infoMovie div p {
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.5rem;
   margin-top: 1.18rem;
-  text-align: left;
 
   overflow: hidden;
   text-overflow: ellipsis;
-
-  max-height: 16.5em;
+  display: -webkit-box;
+  -webkit-line-clamp: 9;
+  -webkit-box-orient: vertical;
 }
 
 button {
-  width: 180.98px;
+  width: 180px;
   height: 47px;
   padding: 1px 6px 1px 6px;
   border: 2px solid #1a1a1a;
   border-radius: 5px;
   background: var(--bg-button);
-  margin: 1.8rem auto;
+  margin: 30px auto;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -106,12 +107,10 @@ button img {
   height: 22px;
 }
 
-p {
-  display: block;
+#legenda {
   width: 381px;
   color: var(--title);
   font-weight: 400;
   font-size: 0.85rem;
   line-height: 1.3rem;
-  text-align: center;
 }

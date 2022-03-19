@@ -1,78 +1,53 @@
 import { API_KEY, BASE_URL, IMG_URL, language } from './api.js'
 
-const section = document.getElementById('result')
+const button = document.querySelector('button')
 
-/* // Com axios
-function getMovie() {
-  axios
-    .get(`${BASE_URL}${idMovie}?${API_KEY}&${language}`)
-    .then(response => {
-      // console.log(JSON.stringify(response.data))
-    })
-    .catch(error => console.log(error))
-} */
-
-// Com FETCH
-/* async function getMovie() {
-  try {
-    const response = await fetch(`${BASE_URL}${idMovie}?${API_KEY}&${language}`)
-    const data = await response.json()
-    console.log(data)
-  } catch (error) {
-    console.log(error)
-  }
-} */
+const infoMovieContainer = document.getElementById('infoMovie')
+const posterMovie = infoMovieContainer.children[0]
+const infoMovieTextContainer = infoMovieContainer.children[1]
 
 function getMovie(idMovie) {
-  section.classList.toggle('result_show')
-
   axios
     .get(`${BASE_URL}${idMovie}?${API_KEY}&${language}`)
     .then(response => {
-      if (response.status == 200) {
-        const dado = response.data
-        show(dado)
-        console.log('aaaaa')
-      }
+      const data = response.data
+      show(data)
+      console.log('encontrou')
+      console.log(data)
     })
     .catch(function (error) {
       console.log(error.response.status)
       showError()
     })
-  showClean()
+
+  infoMovieContainer.classList.add('infoMovieShow')
 }
 
 function show(data) {
-  section.children[0].src = `${IMG_URL}${data.poster_path}`
-  section.children[0].alt = `Poster do filme "${data.title}"`
-  section.children[1].style.marginTop = '0'
-  section.children[1].style.marginBottom = '0'
-  section.children[1].children[0].innerHTML = `${data.title}`
-  section.children[1].children[1].innerHTML = `${data.overview}`
+  posterMovie.src = data.poster_path
+    ? `${IMG_URL}${data.poster_path}`
+    : './assets/poster_404.png'
+
+  posterMovie.alt = `Poster do filme "${data.title}"`
+  infoMovieTextContainer.style.marginTop = '0'
+  infoMovieTextContainer.style.marginBottom = '0'
+  infoMovieTextContainer.children[0].innerHTML = `${data.title}`
+
+  infoMovieTextContainer.children[1].innerHTML =
+    data.overview != '' ? `${data.overview}` : `Sinopse indisponivel`
 }
 
 function showError() {
-  section.children[0].src = './assets/poster_404.png'
-  section.children[0].alt = 'Poster ERROR 404'
-  section.children[1].children[0].innerHTML =
+  posterMovie.src = './assets/poster_404.png'
+  posterMovie.alt = 'Poster ERROR 404'
+  infoMovieTextContainer.style.marginTop = 'auto'
+  infoMovieTextContainer.style.marginBottom = 'auto'
+  infoMovieTextContainer.children[0].innerHTML =
     'Ops, hoje não é dia de assistir filme. <br>Bora codar! 🚀'
-  section.children[1].children[1].innerHTML = ''
-  section.children[1].style.marginTop = 'auto'
-  section.children[1].style.marginBottom = 'auto'
+  infoMovieTextContainer.children[1].innerHTML = ''
 }
 
-function showClean() {
-  section.children[0].src = ''
-  section.children[0].alt = ''
-  section.children[1].children[0].innerHTML = ''
-  section.children[1].children[1].innerHTML = ''
-  section.children[1].style.marginTop = 'auto'
-  section.children[1].style.marginBottom = 'auto'
-}
-
-const buttonF = document.querySelector('button')
-buttonF.addEventListener('click', function () {
-  const idMovie = Math.floor(Math.random() * 1000 + 1)
-
+button.addEventListener('click', function () {
+  const idMovie = Math.floor(Math.random() * 100000 + 1)
   getMovie(idMovie)
 })
