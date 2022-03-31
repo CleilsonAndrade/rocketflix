@@ -12,11 +12,8 @@ function getMovie(idMovie) {
     .then(response => {
       const data = response.data
       show(data)
-      console.log('encontrou')
-      console.log(data)
     })
-    .catch(function (error) {
-      console.log(error.response.status)
+    .catch(error => {
       showError()
     })
 
@@ -34,7 +31,7 @@ function show(data) {
   infoMovieTextContainer.children[0].innerHTML = `${data.title}`
 
   infoMovieTextContainer.children[1].innerHTML =
-    data.overview != '' ? `${data.overview}` : `Sinopse indisponivel`
+    data.overview != '' ? `${data.overview}` : ` indisponível`
 }
 
 function showError() {
@@ -47,7 +44,7 @@ function showError() {
   infoMovieTextContainer.children[1].innerHTML = ''
 }
 
-button.addEventListener('click', function () {
+button.addEventListener('click', () => {
   const idMovie = Math.floor(Math.random() * 100000 + 1)
   getMovie(idMovie)
 })
